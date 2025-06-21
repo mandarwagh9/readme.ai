@@ -160,17 +160,7 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/ae9c0579-c56c-41e9-a5f9-ea0ee406855a) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
 =======
 Below is a **step-by-step plan** to build a “GitHub‑to‑README” AI tool using Next.js. You’ll set up a frontend where a user enters a GitHub username, a backend API route that:
 
