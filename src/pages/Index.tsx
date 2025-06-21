@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -7,7 +6,70 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 import ReactMarkdown from "react-markdown";
-import { Loader2, Download, Github, Star, GitFork, Users, ExternalLink, Sparkles, Code2, Zap } from "lucide-react";
+import { Loader2, Download, Github, Star, GitFork, Users, ExternalLink, Sparkles, Code2, Zap, CheckCircle2, FileCode2, FileDown } from "lucide-react";
+
+const HowToUseSection = () => (
+  <div className="max-w-4xl mx-auto mb-12 px-4">
+    <Card className="shadow-xl border border-gray-800 bg-gray-900/50 backdrop-blur-xl">
+      <CardHeader>
+        <CardTitle className="text-2xl text-white flex items-center gap-2">
+          <FileCode2 className="w-6 h-6" />
+          How to Set Up Your GitHub Profile README
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+            <CheckCircle2 className="w-5 h-5 text-green-500" />
+            Step 1: Create Your Profile Repository
+          </h3>
+          <div className="pl-7 space-y-2 text-gray-300">
+            <p>1. Go to GitHub and create a new repository</p>
+            <p>2. Name it exactly the same as your GitHub username</p>
+            <p>3. Make it public and initialize with a README</p>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+            <CheckCircle2 className="w-5 h-5 text-green-500" />
+            Step 2: Generate Your README
+          </h3>
+          <div className="pl-7 space-y-2 text-gray-300">
+            <p>1. Enter your GitHub username in the field below</p>
+            <p>2. Click "Generate README"</p>
+            <p>3. Click "Download README" when it's ready</p>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+            <CheckCircle2 className="w-5 h-5 text-green-500" />
+            Step 3: Update Your Profile
+          </h3>
+          <div className="pl-7 space-y-2 text-gray-300">
+            <p>1. Open your profile repository on GitHub</p>
+            <p>2. Edit the README.md file</p>
+            <p>3. Replace the content with your generated README</p>
+            <p>4. Commit the changes and your profile is ready!</p>
+          </div>
+        </div>
+
+        <Separator className="my-4 bg-gray-800" />
+        
+        <div className="text-sm text-gray-400">
+          <p className="font-semibold">💡 Pro Tips:</p>
+          <ul className="list-disc pl-5 mt-2 space-y-1">
+            <li>Make sure your GitHub profile is public</li>
+            <li>Pin your best repositories for better results</li>
+            <li>Keep your profile bio and information up to date</li>
+            <li>Regularly update your README to showcase new projects</li>
+          </ul>
+        </div>
+      </CardContent>
+    </Card>
+  </div>
+);
 
 const Index = () => {
   const [username, setUsername] = useState("");
@@ -15,7 +77,7 @@ const Index = () => {
   const [userData, setUserData] = useState(null);
   const [repositories, setRepositories] = useState([]);
   const [generatedReadme, setGeneratedReadme] = useState("");
-  const [step, setStep] = useState("input"); // input, preview, generated
+  const [step, setStep] = useState("input"); // input, generated
 
   const fetchPinnedRepositories = async (username: string) => {
     const query = `
@@ -86,7 +148,7 @@ const Index = () => {
     }
 
     setLoading(true);
-    setStep("preview");
+    setStep("generated");
     
     try {
       // Fetch GitHub user data
@@ -240,8 +302,6 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-0000
 
 **⭐ Star some repositories if you find them interesting!**
 
-*Made with ❤️ and lots of ☕*
-
 </div>`;
 
       setGeneratedReadme(readme);
@@ -271,6 +331,9 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-0000
     setUserData(null);
     setRepositories([]);
     setGeneratedReadme("");
+    setLoading(false);
+    // Clear any existing toasts
+    toast.dismiss();
   };
 
   return (
@@ -286,18 +349,15 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-0000
       
       <div className="relative z-10 container mx-auto px-4 py-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-4 mb-6">
             <div className="p-3 bg-white rounded-2xl">
               <Github className="w-8 h-8 text-black" />
             </div>
-            <h1 className="text-5xl font-bold text-white">
-              README Generator
-            </h1>
-            <div className="p-3 bg-white rounded-2xl">
-              <Sparkles className="w-8 h-8 text-black" />
-            </div>
           </div>
+          <h1 className="text-5xl font-bold text-white mb-4">
+            README.ai
+          </h1>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Transform any GitHub profile into a <span className="text-white font-semibold">stunning README</span> with 
             AI-powered insights and <span className="text-white font-semibold">beautiful formatting</span>
@@ -319,202 +379,72 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-0000
         </div>
 
         {step === "input" && (
-          <Card className="max-w-2xl mx-auto shadow-2xl border border-gray-800 bg-gray-900/50 backdrop-blur-xl">
-            <CardHeader className="text-center pb-6">
-              <CardTitle className="text-3xl text-white">Get Started</CardTitle>
-              <CardDescription className="text-gray-300 text-lg">
-                Enter a GitHub username to generate a personalized README
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="p-8">
-              <form onSubmit={handleSubmit} className="space-y-8">
-                <div className="space-y-3">
-                  <Input
-                    type="text"
-                    placeholder="Enter GitHub username (e.g., octocat)"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    className="text-lg py-6 text-center bg-black/50 border-gray-700 text-white placeholder:text-gray-500 focus:border-white focus:ring-white"
-                    disabled={loading}
-                  />
-                </div>
-                <Button 
-                  type="submit" 
-                  disabled={loading || !username.trim()}
-                  className="w-full py-6 text-lg bg-white text-black hover:bg-gray-200 shadow-lg transition-all duration-300"
-                >
-                  {loading ? (
-                    <>
-                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                      Generating README...
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles className="w-5 h-5 mr-2" />
-                      Generate README
-                    </>
-                  )}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-        )}
-
-        {step === "preview" && userData && (
-          <div className="max-w-6xl mx-auto">
-            <Card className="shadow-2xl border border-gray-800 bg-gray-900/50 backdrop-blur-xl mb-8">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-4 text-white">
-                  <img 
-                    src={userData.avatar_url} 
-                    alt={userData.login}
-                    className="w-16 h-16 rounded-full ring-4 ring-white/50"
-                  />
-                  <div>
-                    <h2 className="text-3xl">{userData.name || userData.login}</h2>
-                    <p className="text-gray-300 text-lg">@{userData.login}</p>
-                  </div>
-                </CardTitle>
+          <>
+            <Card className="max-w-xl mx-auto shadow-2xl border border-gray-800 bg-gray-900/50 backdrop-blur-xl mb-12">
+              <CardHeader className="text-center pb-6">
+                <CardTitle className="text-3xl text-white">Get Started</CardTitle>
+                <CardDescription className="text-gray-300 text-lg">
+                  Enter a GitHub username to generate a personalized README
+                </CardDescription>
               </CardHeader>
-              <CardContent>
-                {userData.bio && (
-                  <p className="text-gray-300 mb-6 text-lg">{userData.bio}</p>
-                )}
-                <div className="flex flex-wrap gap-6 text-gray-300">
-                  <div className="flex items-center gap-2">
-                    <Users className="w-5 h-5 text-white" />
-                    <span className="font-semibold">{userData.followers}</span> followers
+              <CardContent className="p-8">
+                <form onSubmit={handleSubmit} className="space-y-8">
+                  <div className="space-y-3">
+                    <Input
+                      type="text"
+                      placeholder="Enter GitHub username (e.g., octocat)"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      className="text-lg py-6 text-center bg-black/50 border-gray-700 text-white placeholder:text-gray-500 focus:border-white focus:ring-white"
+                      disabled={loading}
+                    />
                   </div>
-                  <div className="flex items-center gap-2">
-                    <Users className="w-5 h-5 text-white" />
-                    <span className="font-semibold">{userData.following}</span> following
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Github className="w-5 h-5 text-white" />
-                    <span className="font-semibold">{userData.public_repos}</span> repositories
-                  </div>
-                  {userData.location && (
-                    <div className="flex items-center gap-2">
-                      <span>📍</span> {userData.location}
-                    </div>
-                  )}
-                  {userData.blog && (
-                    <a 
-                      href={userData.blog} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-white hover:text-gray-300 transition-colors"
-                    >
-                      <ExternalLink className="w-4 h-4" />
-                      Website
-                    </a>
-                  )}
-                </div>
+                  <Button 
+                    type="submit" 
+                    disabled={loading || !username.trim()}
+                    className="w-full py-6 text-lg bg-white text-black hover:bg-gray-200 shadow-lg transition-all duration-300"
+                  >
+                    {loading ? (
+                      <>
+                        <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                        Generating README...
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="w-5 h-5 mr-2" />
+                        Generate README
+                      </>
+                    )}
+                  </Button>
+                </form>
               </CardContent>
             </Card>
-
-            {repositories.length > 0 && (
-              <Card className="shadow-2xl border border-gray-800 bg-gray-900/50 backdrop-blur-xl mb-8">
-                <CardHeader>
-                  <CardTitle className="text-white text-2xl">Pinned Repositories</CardTitle>
-                  <CardDescription className="text-gray-400">
-                    {repositories.length > 0 ? "Showcasing pinned projects from the user's profile" : "Top repositories by stars"}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid gap-4">
-                    {repositories.map((repo, index) => (
-                      <div key={index} className="border border-gray-700 rounded-xl p-6 bg-black/30 hover:bg-black/50 transition-all duration-300">
-                        <div className="flex items-start justify-between mb-3">
-                          <a 
-                            href={repo.html_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xl font-semibold text-white hover:text-gray-300 transition-colors"
-                          >
-                            {repo.name}
-                          </a>
-                          <div className="flex items-center gap-4 text-sm text-gray-400">
-                            <div className="flex items-center gap-1">
-                              <Star className="w-4 h-4 text-white" />
-                              {repo.stargazers_count}
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <GitFork className="w-4 h-4 text-white" />
-                              {repo.forks_count}
-                            </div>
-                          </div>
-                        </div>
-                        <p className="text-gray-300 mb-3 leading-relaxed">{repo.description}</p>
-                        {repo.language && (
-                          <Badge variant="secondary" className="bg-white/20 text-white border-gray-700">
-                            {repo.language}
-                          </Badge>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            )}
-
-            <div className="text-center">
-              <div className="flex items-center justify-center mb-6">
-                <Loader2 className="w-8 h-8 animate-spin mr-3 text-white" />
-                <span className="text-xl text-white">Crafting your awesome README...</span>
-              </div>
-            </div>
-          </div>
+            <HowToUseSection />
+          </>
         )}
 
         {step === "generated" && generatedReadme && (
           <div className="max-w-7xl mx-auto">
             <Card className="shadow-2xl border border-gray-800 bg-gray-900/50 backdrop-blur-xl">
               <CardHeader className="flex flex-row items-center justify-between">
-                <CardTitle className="text-3xl text-white">Your Generated README</CardTitle>
+                <CardTitle className="text-3xl text-white">README Generated Successfully!</CardTitle>
                 <div className="flex gap-3">
                   <Button onClick={downloadReadme} className="bg-white text-black hover:bg-gray-200 shadow-lg">
                     <Download className="w-4 h-4 mr-2" />
-                    Download
+                    Download README
                   </Button>
-                  <Button onClick={resetForm} variant="outline" className="border-gray-700 text-white hover:bg-gray-800">
+                  <Button 
+                    onClick={resetForm} 
+                    variant="outline" 
+                    className="bg-white border-gray-200 text-black hover:bg-gray-100 hover:text-black shadow-lg"
+                  >
                     Generate Another
                   </Button>
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="prose prose-invert prose-lg max-w-none bg-black/80 rounded-xl p-8 border border-gray-800 overflow-auto">
-                  <ReactMarkdown 
-                    components={{
-                      img: ({ node, ...props }) => (
-                        <img 
-                          {...props} 
-                          style={{ maxWidth: '100%', height: 'auto' }}
-                          className="rounded-lg shadow-lg"
-                        />
-                      ),
-                      h1: ({ node, ...props }) => (
-                        <h1 {...props} className="text-4xl font-bold text-center mb-8 text-white" />
-                      ),
-                      h2: ({ node, ...props }) => (
-                        <h2 {...props} className="text-2xl font-semibold mt-8 mb-4 text-white" />
-                      ),
-                      h3: ({ node, ...props }) => (
-                        <h3 {...props} className="text-xl font-semibold mt-6 mb-3 text-gray-300" />
-                      ),
-                      a: ({ node, ...props }) => (
-                        <a {...props} className="text-white hover:text-gray-300 transition-colors" target="_blank" rel="noopener noreferrer" />
-                      ),
-                      blockquote: ({ node, ...props }) => (
-                        <blockquote {...props} className="border-l-4 border-white pl-4 italic text-gray-300 bg-gray-800/50 rounded-r-lg p-4" />
-                      ),
-                      code: ({ node, ...props }) => (
-                        <code {...props} className="bg-gray-800 text-white px-2 py-1 rounded text-sm" />
-                      )
-                    }}
-                  >
-                    {generatedReadme}
-                  </ReactMarkdown>
+                <div className="text-center text-gray-400">
+                  <p>Your README has been generated! Click the download button above to save it.</p>
                 </div>
               </CardContent>
             </Card>
