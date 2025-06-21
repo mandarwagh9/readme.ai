@@ -1,5 +1,4 @@
-# README.ai 🚀
-
+# README.ai 🚀 <img src="https://github.com/mandarwagh9/readme.ai/blob/main/src/components/favicon.ico" alt="README.ai Logo" width="32" height="32" style="vertical-align: middle; margin-left: 10px;">
 A beautiful, modern web application that transforms any GitHub profile into a stunning README with AI-powered insights and beautiful formatting.
 
 ![README.ai Demo](https://raw.githubusercontent.com/mandarwagh9/readme.ai/779f16fe22595a49cee6dd1a6f004051152fbf4f/localhost_8080_(screenshot)%20(2).png?token=BIOUNHF564ECATVHIT3MZATIK3NP2)
