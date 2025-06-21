@@ -245,15 +245,6 @@ You’ll store both in a `.env.local` file (covered below).
      @tailwind utilities;
      ```
 
-4. **Create a `.env.local` file** (in the project root) to store your secrets:
-
-   ```
-   OPENAI_API_KEY=your_openai_api_key_here
-   GITHUB_PAT=your_github_pat_here    # optional but recommended
-   ```
-
-   * **Important**: Do *not* commit `.env.local` to Git. It is in `.gitignore` by default from `create-next-app`.
-
 ---
 
 ## 3. Directory Structure Overview
