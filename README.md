@@ -289,7 +289,3 @@ You now have a **full-stack** Next.js project that:
 5. **Renders** the Markdown live (via `react-markdown` + Tailwind’s Typography).
 6. **Enables** downloading the result as a `.md` file.
 
-Feel free to extend it—connect GitHub OAuth to push directly to their repo, add theming, caching, or drag‑and‑drop reordering. But as an MVP, the above steps give you a working, end‑to‑end AI‑powered README generator.
-
-Good luck, and happy coding!
->>>>>>> 752a7a905cde81b77e3d70331afe7214e465f017
