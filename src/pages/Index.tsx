@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 import ReactMarkdown from "react-markdown";
-import { Loader2, Download, Github, Star, GitFork, Users, ExternalLink } from "lucide-react";
+import { Loader2, Download, Github, Star, GitFork, Users, ExternalLink, Sparkles, Code2, Zap } from "lucide-react";
 
 const Index = () => {
   const [username, setUsername] = useState("");
@@ -63,51 +63,116 @@ const Index = () => {
 
   const generateReadme = async (user: any, repos: any[]) => {
     try {
-      // For demonstration, we'll create a template-based README
-      // In a real implementation, this would call an AI API
       const languages = Array.from(new Set(repos.map(r => r.language).filter(Boolean)));
       const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
       
-      const readme = `# Hi there! 👋 I'm ${user.name || user.login}
+      const readme = `<div align="center">
 
-${user.bio ? `## About Me\n${user.bio}\n` : ''}
+![Header](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=300&section=header&text=${encodeURIComponent(user.name || user.login)}&fontSize=90&fontColor=fff&animation=fadeIn&fontAlignY=38&desc=${encodeURIComponent(user.bio || 'Passionate Developer')}&descAlignY=51&descAlign=62)
 
-🔭 I'm currently working on exciting projects  
-🌱 I'm always learning something new  
-💬 Ask me about anything tech-related  
-📫 How to reach me: [GitHub](${user.html_url})  
-⚡ Fun fact: I have ${user.public_repos} public repositories!
+</div>
 
-## 📊 GitHub Stats
+<div align="center">
 
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=${user.login}&show_icons=true&theme=radical)
+### 👋 Welcome to my GitHub profile!
+
+${user.bio ? `*${user.bio}*` : '*Building amazing things with code*'}
+
+[![GitHub followers](https://img.shields.io/github/followers/${user.login}?label=Followers&style=for-the-badge&logo=github)](https://github.com/${user.login}?tab=followers)
+[![GitHub stars](https://img.shields.io/github/stars/${user.login}?label=Stars&style=for-the-badge&logo=github)](https://github.com/${user.login})
+[![Profile views](https://komarev.com/ghpvc/?username=${user.login}&label=Profile%20views&color=0e75b6&style=for-the-badge)](https://github.com/${user.login})
+
+</div>
+
+## 🚀 About Me
+
+- 🔭 I'm currently working on **exciting projects**
+- 🌱 I'm always **learning and growing**
+- 👯 I'm looking to **collaborate** on innovative ideas
+- 💬 Ask me about **${languages.slice(0, 3).join(', ')}**
+- 📫 How to reach me: **[@${user.login}](https://github.com/${user.login})**
+- ⚡ Fun fact: **I have ${user.public_repos} public repositories!**
 
 ## 🛠️ Tech Stack
 
-${languages.length > 0 ? languages.map(lang => `![${lang}](https://img.shields.io/badge/-${lang}-blue?style=flat-square&logo=${lang.toLowerCase()})`).join(' ') : 'Various technologies'}
+<div align="center">
 
-## 🚀 Featured Projects
+${languages.map(lang => {
+  const langLower = lang.toLowerCase().replace(/[^a-z0-9]/g, '');
+  return `![${lang}](https://img.shields.io/badge/${lang}-000000?style=for-the-badge&logo=${langLower}&logoColor=white)`;
+}).join('\n')}
 
-${repos.map(repo => `### [${repo.name}](${repo.html_url})
-${repo.description}  
-⭐ ${repo.stargazers_count} stars • 🍴 ${repo.forks_count} forks${repo.language ? ` • 📝 ${repo.language}` : ''}
-`).join('\n')}
+</div>
 
-## 📈 Profile Stats
+## 📊 GitHub Analytics
 
-- 👥 **${user.followers}** followers
-- 👤 **${user.following}** following  
-- 📚 **${user.public_repos}** public repositories
-- ⭐ **${totalStars}** total stars earned
+<div align="center">
+
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=${user.login}&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true"/>
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=${user.login}&layout=compact&langs_count=8&theme=tokyonight"/>
+
+</div>
+
+<div align="center">
+
+![GitHub Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=${user.login}&theme=tokyo-night)
+
+</div>
+
+## 🏆 Featured Projects
+
+${repos.map(repo => `### 🎯 [${repo.name}](${repo.html_url})
+
+${repo.description}
+
+![Stars](https://img.shields.io/github/stars/${user.login}/${repo.name}?style=social) ![Forks](https://img.shields.io/github/forks/${user.login}/${repo.name}?style=social) ${repo.language ? `![Language](https://img.shields.io/badge/-${repo.language}-blue)` : ''}
+
+---`).join('\n\n')}
+
+## 📈 Contribution Stats
+
+<div align="center">
+
+![GitHub streak stats](https://github-readme-streak-stats.herokuapp.com/?user=${user.login}&theme=tokyonight)
+
+</div>
+
+## 🎯 Current Focus
+
+- 🔥 Building **innovative solutions**
+- 📚 Learning **new technologies**
+- 🤝 Contributing to **open source**
+- 🌟 Creating **impactful projects**
 
 ## 🤝 Let's Connect!
 
-[![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](${user.html_url})
-${user.blog ? `[![Website](https://img.shields.io/badge/-Website-blue?style=flat-square&logo=globe)](${user.blog})` : ''}
-${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/-Twitter-1da1f2?style=flat-square&logo=twitter&logoColor=white)](https://twitter.com/${user.twitter_username})` : ''}
+<div align="center">
+
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/${user.login})
+${user.blog ? `[![Website](https://img.shields.io/badge/Website-FF7139?style=for-the-badge&logo=Firefox-Browser&logoColor=white)](${user.blog})` : ''}
+${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/${user.twitter_username})` : ''}
+
+</div>
+
+<div align="center">
+
+### 💭 Random Dev Quote
+
+![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight)
+
+</div>
 
 ---
-💙 Thanks for visiting my profile! Have a great day!`;
+
+<div align="center">
+
+**⭐ Star some repositories if you find them interesting!**
+
+*Made with ❤️ and lots of ☕*
+
+![Footer](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=footer)
+
+</div>`;
 
       setGeneratedReadme(readme);
       setStep("generated");
@@ -139,45 +204,72 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/-Twitter-1da
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-100">
-      <div className="container mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 w-full h-full">
+        <div className="absolute top-20 left-20 w-72 h-72 bg-purple-500/30 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
+        <div className="absolute top-40 right-20 w-96 h-96 bg-blue-500/30 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-75"></div>
+        <div className="absolute -bottom-8 left-1/2 w-80 h-80 bg-pink-500/30 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-150"></div>
+      </div>
+      
+      <div className="relative z-10 container mx-auto px-4 py-8">
         {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <Github className="w-10 h-10 text-purple-600" />
-            <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              GitHub README Generator
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="p-3 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl">
+              <Github className="w-8 h-8 text-white" />
+            </div>
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
+              README Generator
             </h1>
+            <div className="p-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl">
+              <Sparkles className="w-8 h-8 text-white" />
+            </div>
           </div>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Transform any GitHub profile into a stunning README with AI-powered insights and beautiful formatting
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+            Transform any GitHub profile into a <span className="text-purple-400 font-semibold">stunning README</span> with 
+            AI-powered insights and <span className="text-blue-400 font-semibold">beautiful formatting</span>
           </p>
+          <div className="flex items-center justify-center gap-6 mt-6">
+            <div className="flex items-center gap-2 text-slate-400">
+              <Zap className="w-5 h-5 text-yellow-400" />
+              <span>Lightning Fast</span>
+            </div>
+            <div className="flex items-center gap-2 text-slate-400">
+              <Code2 className="w-5 h-5 text-green-400" />
+              <span>AI Powered</span>
+            </div>
+            <div className="flex items-center gap-2 text-slate-400">
+              <Star className="w-5 h-5 text-purple-400" />
+              <span>Modern Design</span>
+            </div>
+          </div>
         </div>
 
         {step === "input" && (
-          <Card className="max-w-2xl mx-auto shadow-xl border-0 bg-white/70 backdrop-blur-sm">
-            <CardHeader className="text-center">
-              <CardTitle className="text-2xl">Get Started</CardTitle>
-              <CardDescription>
+          <Card className="max-w-2xl mx-auto shadow-2xl border-0 bg-white/10 backdrop-blur-xl">
+            <CardHeader className="text-center pb-6">
+              <CardTitle className="text-3xl text-white">Get Started</CardTitle>
+              <CardDescription className="text-slate-300 text-lg">
                 Enter a GitHub username to generate a personalized README
               </CardDescription>
             </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
+            <CardContent className="p-8">
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="space-y-3">
                   <Input
                     type="text"
                     placeholder="Enter GitHub username (e.g., octocat)"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="text-lg py-6 text-center"
+                    className="text-lg py-6 text-center bg-white/20 border-white/30 text-white placeholder:text-slate-400 focus:border-purple-400 focus:ring-purple-400"
                     disabled={loading}
                   />
                 </div>
                 <Button 
                   type="submit" 
                   disabled={loading || !username.trim()}
-                  className="w-full py-6 text-lg bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700"
+                  className="w-full py-6 text-lg bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 hover:from-purple-700 hover:via-blue-700 hover:to-purple-700 shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
                 >
                   {loading ? (
                     <>
@@ -186,7 +278,7 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/-Twitter-1da
                     </>
                   ) : (
                     <>
-                      <Github className="w-5 h-5 mr-2" />
+                      <Sparkles className="w-5 h-5 mr-2" />
                       Generate README
                     </>
                   )}
@@ -197,47 +289,49 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/-Twitter-1da
         )}
 
         {step === "preview" && userData && (
-          <div className="max-w-4xl mx-auto">
-            <Card className="shadow-xl border-0 bg-white/70 backdrop-blur-sm mb-8">
+          <div className="max-w-6xl mx-auto">
+            <Card className="shadow-2xl border-0 bg-white/10 backdrop-blur-xl mb-8">
               <CardHeader>
-                <CardTitle className="flex items-center gap-3">
+                <CardTitle className="flex items-center gap-4 text-white">
                   <img 
                     src={userData.avatar_url} 
                     alt={userData.login}
-                    className="w-12 h-12 rounded-full"
+                    className="w-16 h-16 rounded-full ring-4 ring-purple-400/50"
                   />
                   <div>
-                    <h2 className="text-2xl">{userData.name || userData.login}</h2>
-                    <p className="text-gray-600">@{userData.login}</p>
+                    <h2 className="text-3xl">{userData.name || userData.login}</h2>
+                    <p className="text-slate-300 text-lg">@{userData.login}</p>
                   </div>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 {userData.bio && (
-                  <p className="text-gray-700 mb-4">{userData.bio}</p>
+                  <p className="text-slate-300 mb-6 text-lg">{userData.bio}</p>
                 )}
-                <div className="flex flex-wrap gap-4 text-sm text-gray-600">
-                  <div className="flex items-center gap-1">
-                    <Users className="w-4 h-4" />
-                    {userData.followers} followers
+                <div className="flex flex-wrap gap-6 text-slate-300">
+                  <div className="flex items-center gap-2">
+                    <Users className="w-5 h-5 text-purple-400" />
+                    <span className="font-semibold">{userData.followers}</span> followers
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Users className="w-4 h-4" />
-                    {userData.following} following
+                  <div className="flex items-center gap-2">
+                    <Users className="w-5 h-5 text-blue-400" />
+                    <span className="font-semibold">{userData.following}</span> following
                   </div>
-                  <div className="flex items-center gap-1">
-                    <Github className="w-4 h-4" />
-                    {userData.public_repos} repositories
+                  <div className="flex items-center gap-2">
+                    <Github className="w-5 h-5 text-green-400" />
+                    <span className="font-semibold">{userData.public_repos}</span> repositories
                   </div>
                   {userData.location && (
-                    <div>📍 {userData.location}</div>
+                    <div className="flex items-center gap-2">
+                      <span>📍</span> {userData.location}
+                    </div>
                   )}
                   {userData.blog && (
                     <a 
                       href={userData.blog} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1 text-blue-600 hover:underline"
+                      className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
                     >
                       <ExternalLink className="w-4 h-4" />
                       Website
@@ -248,33 +342,39 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/-Twitter-1da
             </Card>
 
             {repositories.length > 0 && (
-              <Card className="shadow-xl border-0 bg-white/70 backdrop-blur-sm mb-8">
+              <Card className="shadow-2xl border-0 bg-white/10 backdrop-blur-xl mb-8">
                 <CardHeader>
-                  <CardTitle>Top Repositories</CardTitle>
+                  <CardTitle className="text-white text-2xl">Top Repositories</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="grid gap-4">
                     {repositories.map((repo, index) => (
-                      <div key={index} className="border rounded-lg p-4 bg-white/50">
-                        <div className="flex items-start justify-between mb-2">
+                      <div key={index} className="border border-white/20 rounded-xl p-6 bg-white/5 hover:bg-white/10 transition-all duration-300">
+                        <div className="flex items-start justify-between mb-3">
                           <a 
                             href={repo.html_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-lg font-semibold text-blue-600 hover:underline"
+                            className="text-xl font-semibold text-purple-400 hover:text-purple-300 transition-colors"
                           >
                             {repo.name}
                           </a>
-                          <div className="flex items-center gap-2 text-sm text-gray-600">
-                            <Star className="w-4 h-4" />
-                            {repo.stargazers_count}
-                            <GitFork className="w-4 h-4" />
-                            {repo.forks_count}
+                          <div className="flex items-center gap-4 text-sm text-slate-400">
+                            <div className="flex items-center gap-1">
+                              <Star className="w-4 h-4 text-yellow-400" />
+                              {repo.stargazers_count}
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <GitFork className="w-4 h-4 text-blue-400" />
+                              {repo.forks_count}
+                            </div>
                           </div>
                         </div>
-                        <p className="text-gray-700 mb-2">{repo.description}</p>
+                        <p className="text-slate-300 mb-3 leading-relaxed">{repo.description}</p>
                         {repo.language && (
-                          <Badge variant="secondary">{repo.language}</Badge>
+                          <Badge variant="secondary" className="bg-purple-500/20 text-purple-300 border-purple-400/30">
+                            {repo.language}
+                          </Badge>
                         )}
                       </div>
                     ))}
@@ -284,38 +384,35 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/-Twitter-1da
             )}
 
             <div className="text-center">
-              <div className="flex items-center justify-center mb-4">
-                <Loader2 className="w-6 h-6 animate-spin mr-2" />
-                <span>Generating your awesome README...</span>
+              <div className="flex items-center justify-center mb-6">
+                <Loader2 className="w-8 h-8 animate-spin mr-3 text-purple-400" />
+                <span className="text-xl text-white">Crafting your awesome README...</span>
               </div>
             </div>
           </div>
         )}
 
         {step === "generated" && generatedReadme && (
-          <div className="max-w-6xl mx-auto">
-            <div className="flex flex-col lg:flex-row gap-8">
-              {/* Generated README Preview */}
-              <Card className="flex-1 shadow-xl border-0 bg-white/70 backdrop-blur-sm">
-                <CardHeader className="flex flex-row items-center justify-between">
-                  <CardTitle>Generated README</CardTitle>
-                  <div className="flex gap-2">
-                    <Button onClick={downloadReadme} className="bg-green-600 hover:bg-green-700">
-                      <Download className="w-4 h-4 mr-2" />
-                      Download
-                    </Button>
-                    <Button onClick={resetForm} variant="outline">
-                      Generate Another
-                    </Button>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="prose prose-sm max-w-none">
-                    <ReactMarkdown>{generatedReadme}</ReactMarkdown>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
+          <div className="max-w-7xl mx-auto">
+            <Card className="shadow-2xl border-0 bg-white/10 backdrop-blur-xl">
+              <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle className="text-3xl text-white">Your Generated README</CardTitle>
+                <div className="flex gap-3">
+                  <Button onClick={downloadReadme} className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 shadow-lg">
+                    <Download className="w-4 h-4 mr-2" />
+                    Download
+                  </Button>
+                  <Button onClick={resetForm} variant="outline" className="border-white/30 text-white hover:bg-white/10">
+                    Generate Another
+                  </Button>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="prose prose-invert prose-lg max-w-none bg-slate-900/50 rounded-xl p-8 border border-white/10">
+                  <ReactMarkdown>{generatedReadme}</ReactMarkdown>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         )}
       </div>
