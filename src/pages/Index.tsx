@@ -16,6 +16,67 @@ const Index = () => {
   const [generatedReadme, setGeneratedReadme] = useState("");
   const [step, setStep] = useState("input"); // input, preview, generated
 
+  const fetchPinnedRepositories = async (username: string) => {
+    const query = `
+      query {
+        user(login: "${username}") {
+          pinnedItems(first: 6, types: [REPOSITORY]) {
+            totalCount
+            edges {
+              node {
+                ... on Repository {
+                  name
+                  description
+                  url
+                  stargazerCount
+                  primaryLanguage {
+                    name
+                  }
+                  forkCount
+                }
+              }
+            }
+          }
+        }
+      }
+    `;
+
+    try {
+      const response = await fetch('https://api.github.com/graphql', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          // Note: This will work with GitHub's public GraphQL API for public repos
+          // For better results, users should add their own GitHub token
+        },
+        body: JSON.stringify({ query })
+      });
+
+      if (!response.ok) {
+        throw new Error('GraphQL request failed');
+      }
+
+      const data = await response.json();
+      
+      if (data.data && data.data.user && data.data.user.pinnedItems) {
+        return data.data.user.pinnedItems.edges.map((edge: any) => ({
+          name: edge.node.name,
+          description: edge.node.description || "No description available",
+          html_url: edge.node.url,
+          stargazers_count: edge.node.stargazerCount,
+          language: edge.node.primaryLanguage?.name,
+          forks_count: edge.node.forkCount
+        }));
+      }
+      
+      return [];
+    } catch (error) {
+      console.error("Error fetching pinned repositories:", error);
+      // Fallback to regular repos if pinned repos fetch fails
+      return null;
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!username.trim()) {
@@ -35,21 +96,28 @@ const Index = () => {
       const user = await userResponse.json();
       setUserData(user);
 
-      // Fetch user repositories
-      const reposResponse = await fetch(`https://api.github.com/users/${username.trim()}/repos?per_page=100&sort=stars&direction=desc`);
-      const repos = await reposResponse.json();
-      const topRepos = repos.slice(0, 6).map((repo: any) => ({
-        name: repo.name,
-        description: repo.description || "No description available",
-        html_url: repo.html_url,
-        stargazers_count: repo.stargazers_count,
-        language: repo.language,
-        forks_count: repo.forks_count
-      }));
-      setRepositories(topRepos);
+      // First try to fetch pinned repositories
+      let repos = await fetchPinnedRepositories(username.trim());
+      
+      // If no pinned repos or fetch failed, fallback to top starred repos
+      if (!repos || repos.length === 0) {
+        console.log("No pinned repositories found, falling back to top starred repos");
+        const reposResponse = await fetch(`https://api.github.com/users/${username.trim()}/repos?per_page=100&sort=stars&direction=desc`);
+        const fallbackRepos = await reposResponse.json();
+        repos = fallbackRepos.slice(0, 6).map((repo: any) => ({
+          name: repo.name,
+          description: repo.description || "No description available",
+          html_url: repo.html_url,
+          stargazers_count: repo.stargazers_count,
+          language: repo.language,
+          forks_count: repo.forks_count
+        }));
+      }
+      
+      setRepositories(repos);
 
       // Generate AI-powered README
-      await generateReadme(user, topRepos);
+      await generateReadme(user, repos);
       
     } catch (error) {
       console.error("Error fetching GitHub data:", error);
@@ -345,7 +413,10 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-1DA1
             {repositories.length > 0 && (
               <Card className="shadow-2xl border-0 bg-white/10 backdrop-blur-xl mb-8">
                 <CardHeader>
-                  <CardTitle className="text-white text-2xl">Top Repositories</CardTitle>
+                  <CardTitle className="text-white text-2xl">Pinned Repositories</CardTitle>
+                  <CardDescription className="text-slate-400">
+                    {repositories.length > 0 ? "Showcasing pinned projects from the user's profile" : "Top repositories by stars"}
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="grid gap-4">
