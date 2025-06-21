@@ -1,73 +1,139 @@
-# Welcome to your Lovable project
 
-## Project info
+# 🤖 readme.ai
 
-**URL**: https://lovable.dev/projects/ae9c0579-c56c-41e9-a5f9-ea0ee406855a
+An AI-powered CLI tool that **automatically generates polished README.md files** for any codebase—just provide your GitHub repo URL and let AI handle the rest.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## 🚀 Features
 
-**Use Lovable**
+- **🌐 Source from Any Repository**: Input a GitHub (or local) repo link/path.
+- **📄 Generate**: AI powers the creation of structured README sections—**Intro**, **Installation**, **Usage**, **Features**, **Technology Stack**, and more.
+- **✨ Customizable Output**: Select header styles, badge colors, emojis, navigation formats, and logos.
+- **🧠 Model Flexible**: Works with OpenAI, Anthropic, Gemini, Ollama—or even fully offline!
+- **🛠 Developer Friendly**: Supports YAML/CLI flags for advanced customization presets.
+- **💼 Documentation Ready**: Use for open-source, APIs, libraries, and rapid prototyping.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ae9c0579-c56c-41e9-a5f9-ea0ee406855a) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠 Quick Start
 
-**Use your preferred IDE**
+### Prerequisites
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+- Node.js or Python environment
+- AI credentials (OpenAI, Anthropic, Gemini, or local LLM)
+- Optional: GitHub CLI/token for repo access
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+---
 
-Follow these steps:
+### 🔧 Installation
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+```bash
+# Clone the repo
+git clone https://github.com/mandarwagh9/readme.ai.git
+cd readme.ai
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Optionally set up a virtual environment for Python
+python -m venv venv
+source venv/bin/activate
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Install dependencies
+npm install      # if Node.js-based
+# or
+pip install -r requirements.txt
+````
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+### ⚙️ Usage (CLI)
+
+# Generate README from remote GitHub repo
+readmeai --repo https://github.com/user/my-cool-project
+
+# Example with styling options
+readmeai \
+  --repo . \
+  --header-style modern \
+  --badge-color 00ADD8 \
+  --badge-style flat-square \
+  --emojis on \
+  --logo custom
+
+# Use alternative AI backend
+readmeai --repo . --model ollama
+
+
+*You can also configure profile options with flags or a YAML/JSON file.*
+
+---
+
+## 🎨 Customization Options
+
+| Option           | Description                                     | Example                 |
+| ---------------- | ----------------------------------------------- | ----------------------- |
+| `--header-style` | Choose header format (classic/modern/compact)   | `modern`                |
+| `--badge-style`  | Badge design style (flat-square/for-the-badge)  | `flat-square`           |
+| `--badge-color`  | Hex color for badges                            | `FF4B4B`                |
+| `--emojis`       | Toggle emojis on/off                            | `on` / `off`            |
+| `--logo`         | Use built-in or custom logos                    | `default`, `custom.svg` |
+| `--model`        | LLM backend (openai, anthropic, ollama, gemini) | `openai`                |
+
+---
+
+## 🏛️ Architecture
+
+```
+┌────────────┐     ┌──────────────┐     ┌────────────┐
+│ Repo URL —─▶ CLI Tool parses input ──▶ Repo Analyzer
+│  or Path   └───────────────────────┴─▶ Metadata + Code Summary
+└──────────────────────────────────────────────────────▶ AI Backend (OpenAI/Gemini/Others)
+                                                     └─ Generates README.md
 ```
 
-**Edit a file directly in GitHub**
+---
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## ✅ Use Cases
 
-**Use GitHub Codespaces**
+* **Open Source Bootstrapping**: Quickly generate high-quality docs for public repos.
+* **API Projects**: Automatically include usage instructions and endpoint details.
+* **Prototyping**: Documentation stays up-to-date with minimal manual effort.
+* **Team Templates**: Standardize docs across your organization with consistent badges and layout.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+---
 
-## What technologies are used for this project?
+## ⚡ Contribute
 
-This project is built with:
+1. Fork and clone this repo
+2. Create your feature branch:
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+   ```bash
+   git checkout -b feature/my-awesome-option
+   ```
+3. Develop and test your feature
+4. Commit your changes:
 
-## How can I deploy this project?
+   ```bash
+   git commit -m "feat: add support for XYZ"
+   ```
+5. Push and create a PR — maintainers will review and merge!
 
-Simply open [Lovable](https://lovable.dev/projects/ae9c0579-c56c-41e9-a5f9-ea0ee406855a) and click on Share -> Publish.
+---
 
-## Can I connect a custom domain to my Lovable project?
+## 📄 License
 
-Yes, you can!
+Licensed under the **MIT License**—see `LICENSE` for details.
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+---
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## ❤️ Acknowledgements
+
+* Inspired by **eli64s/readme‑ai**, delivering flexible README generation with CLI and LLM support ([github.com][1], [yeschat.ai][2], [github.com][3], [github.com][4], [github.com][5])
+* Community discussion on Reddit highlights value of auto-generation tools&#x20;
+* Docker blog features AI-driven README tools similar to this&#x20;
+
+---
+
+### 🔚 Final Note
+
+Automate your documentation workflow effortlessly. Just run `readmeai` and get a polished, ready-to-use `README.md`—no manual writing required.
+
+---
+
