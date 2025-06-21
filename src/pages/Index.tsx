@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -66,83 +65,92 @@ const Index = () => {
       const languages = Array.from(new Set(repos.map(r => r.language).filter(Boolean)));
       const totalStars = repos.reduce((sum, repo) => sum + repo.stargazers_count, 0);
       
-      const readme = `<div align="center">
-
-![Header](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=300&section=header&text=${encodeURIComponent(user.name || user.login)}&fontSize=90&fontColor=fff&animation=fadeIn&fontAlignY=38&desc=${encodeURIComponent(user.bio || 'Passionate Developer')}&descAlignY=51&descAlign=62)
-
-</div>
+      const readme = `# Hi there, I'm ${user.name || user.login}! 👋
 
 <div align="center">
-
-### 👋 Welcome to my GitHub profile!
-
-${user.bio ? `*${user.bio}*` : '*Building amazing things with code*'}
-
-[![GitHub followers](https://img.shields.io/github/followers/${user.login}?label=Followers&style=for-the-badge&logo=github)](https://github.com/${user.login}?tab=followers)
-[![GitHub stars](https://img.shields.io/github/stars/${user.login}?label=Stars&style=for-the-badge&logo=github)](https://github.com/${user.login})
-[![Profile views](https://komarev.com/ghpvc/?username=${user.login}&label=Profile%20views&color=0e75b6&style=for-the-badge)](https://github.com/${user.login})
-
+  <img src="${user.avatar_url}" alt="${user.login}" width="200" height="200" style="border-radius: 50%; border: 4px solid #6366f1;" />
 </div>
 
 ## 🚀 About Me
 
+${user.bio ? `> ${user.bio}` : '> Passionate developer building amazing things with code!'}
+
 - 🔭 I'm currently working on **exciting projects**
-- 🌱 I'm always **learning and growing**
+- 🌱 I'm always **learning and growing** in technology
 - 👯 I'm looking to **collaborate** on innovative ideas
 - 💬 Ask me about **${languages.slice(0, 3).join(', ')}**
 - 📫 How to reach me: **[@${user.login}](https://github.com/${user.login})**
-- ⚡ Fun fact: **I have ${user.public_repos} public repositories!**
+- ⚡ Fun fact: **I have ${user.public_repos} public repositories with ${totalStars} total stars!**
 
-## 🛠️ Tech Stack
+## 🛠️ Tech Stack & Tools
 
 <div align="center">
 
 ${languages.map(lang => {
-  const langLower = lang.toLowerCase().replace(/[^a-z0-9]/g, '');
-  return `![${lang}](https://img.shields.io/badge/${lang}-000000?style=for-the-badge&logo=${langLower}&logoColor=white)`;
+  const badges = {
+    'JavaScript': '![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)',
+    'TypeScript': '![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)',
+    'Python': '![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)',
+    'Java': '![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)',
+    'React': '![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)',
+    'Node.js': '![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)',
+    'HTML': '![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)',
+    'CSS': '![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)',
+    'Go': '![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)',
+    'Rust': '![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)',
+    'C++': '![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)',
+    'C': '![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)',
+    'PHP': '![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)',
+    'Ruby': '![Ruby](https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white)',
+    'Swift': '![Swift](https://img.shields.io/badge/Swift-FA7343?style=for-the-badge&logo=swift&logoColor=white)',
+    'Kotlin': '![Kotlin](https://img.shields.io/badge/Kotlin-0095D5?style=for-the-badge&logo=kotlin&logoColor=white)',
+    'Dart': '![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)',
+    'Shell': '![Shell Script](https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white)',
+    'Dockerfile': '![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)',
+  };
+  return badges[lang] || `![${lang}](https://img.shields.io/badge/${lang}-000000?style=for-the-badge&logo=${lang.toLowerCase()}&logoColor=white)`;
 }).join('\n')}
 
 </div>
 
-## 📊 GitHub Analytics
+## 📊 GitHub Statistics
 
 <div align="center">
-
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=${user.login}&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true"/>
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=${user.login}&layout=compact&langs_count=8&theme=tokyonight"/>
-
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=${user.login}&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true"/>
+  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=${user.login}&layout=compact&langs_count=8&theme=tokyonight&hide_border=true"/>
 </div>
 
 <div align="center">
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=${user.login}&theme=tokyonight&hide_border=true" alt="GitHub Streak" />
+</div>
 
-![GitHub Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=${user.login}&theme=tokyo-night)
-
+<div align="center">
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=${user.login}&theme=tokyo-night&hide_border=true" alt="GitHub Activity Graph" />
 </div>
 
 ## 🏆 Featured Projects
 
 ${repos.map(repo => `### 🎯 [${repo.name}](${repo.html_url})
 
-${repo.description}
+> ${repo.description}
 
-![Stars](https://img.shields.io/github/stars/${user.login}/${repo.name}?style=social) ![Forks](https://img.shields.io/github/forks/${user.login}/${repo.name}?style=social) ${repo.language ? `![Language](https://img.shields.io/badge/-${repo.language}-blue)` : ''}
+<div align="left">
+  
+![Stars](https://img.shields.io/github/stars/${user.login}/${repo.name}?style=social) 
+![Forks](https://img.shields.io/github/forks/${user.login}/${repo.name}?style=social) 
+${repo.language ? `![Language](https://img.shields.io/badge/Language-${repo.language}-blue?style=flat-square)` : ''}
 
----`).join('\n\n')}
+</div>`).join('\n\n---\n\n')}
 
-## 📈 Contribution Stats
+## 📈 Profile Statistics
 
 <div align="center">
 
-![GitHub streak stats](https://github-readme-streak-stats.herokuapp.com/?user=${user.login}&theme=tokyonight)
+![Profile Views](https://komarev.com/ghpvc/?username=${user.login}&label=Profile%20views&color=0e75b6&style=flat)
+![GitHub followers](https://img.shields.io/github/followers/${user.login}?label=Followers&style=social)
+![GitHub User's stars](https://img.shields.io/github/stars/${user.login}?label=Stars&style=social)
 
 </div>
-
-## 🎯 Current Focus
-
-- 🔥 Building **innovative solutions**
-- 📚 Learning **new technologies**
-- 🤝 Contributing to **open source**
-- 🌟 Creating **impactful projects**
 
 ## 🤝 Let's Connect!
 
@@ -154,23 +162,16 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-1DA1
 
 </div>
 
-<div align="center">
-
-### 💭 Random Dev Quote
-
-![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight)
-
-</div>
-
 ---
 
 <div align="center">
 
+### 💭 Random Dev Quote
+![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight)
+
 **⭐ Star some repositories if you find them interesting!**
 
 *Made with ❤️ and lots of ☕*
-
-![Footer](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=footer)
 
 </div>`;
 
@@ -408,8 +409,38 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-1DA1
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="prose prose-invert prose-lg max-w-none bg-slate-900/50 rounded-xl p-8 border border-white/10">
-                  <ReactMarkdown>{generatedReadme}</ReactMarkdown>
+                <div className="prose prose-invert prose-lg max-w-none bg-slate-900/80 rounded-xl p-8 border border-white/10 overflow-auto">
+                  <ReactMarkdown 
+                    components={{
+                      img: ({ node, ...props }) => (
+                        <img 
+                          {...props} 
+                          style={{ maxWidth: '100%', height: 'auto' }}
+                          className="rounded-lg shadow-lg"
+                        />
+                      ),
+                      h1: ({ node, ...props }) => (
+                        <h1 {...props} className="text-4xl font-bold text-center mb-8 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent" />
+                      ),
+                      h2: ({ node, ...props }) => (
+                        <h2 {...props} className="text-2xl font-semibold mt-8 mb-4 text-purple-300" />
+                      ),
+                      h3: ({ node, ...props }) => (
+                        <h3 {...props} className="text-xl font-semibold mt-6 mb-3 text-blue-300" />
+                      ),
+                      a: ({ node, ...props }) => (
+                        <a {...props} className="text-purple-400 hover:text-purple-300 transition-colors" target="_blank" rel="noopener noreferrer" />
+                      ),
+                      blockquote: ({ node, ...props }) => (
+                        <blockquote {...props} className="border-l-4 border-purple-400 pl-4 italic text-slate-300 bg-purple-900/20 rounded-r-lg p-4" />
+                      ),
+                      code: ({ node, ...props }) => (
+                        <code {...props} className="bg-slate-800 text-purple-300 px-2 py-1 rounded text-sm" />
+                      )
+                    }}
+                  >
+                    {generatedReadme}
+                  </ReactMarkdown>
                 </div>
               </CardContent>
             </Card>
