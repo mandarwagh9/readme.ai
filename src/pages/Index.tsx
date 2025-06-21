@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -136,7 +137,7 @@ const Index = () => {
       const readme = `# Hi there, I'm ${user.name || user.login}! 👋
 
 <div align="center">
-  <img src="${user.avatar_url}" alt="${user.login}" width="200" height="200" style="border-radius: 50%; border: 4px solid #6366f1;" />
+  <img src="${user.avatar_url}" alt="${user.login}" width="200" height="200" style="border-radius: 50%; border: 4px solid #000000;" />
 </div>
 
 ## 🚀 About Me
@@ -156,25 +157,25 @@ ${user.bio ? `> ${user.bio}` : '> Passionate developer building amazing things w
 
 ${languages.map(lang => {
   const badges = {
-    'JavaScript': '![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)',
-    'TypeScript': '![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)',
-    'Python': '![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)',
-    'Java': '![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white)',
-    'React': '![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)',
-    'Node.js': '![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)',
-    'HTML': '![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)',
-    'CSS': '![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)',
-    'Go': '![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)',
+    'JavaScript': '![JavaScript](https://img.shields.io/badge/JavaScript-000000?style=for-the-badge&logo=javascript&logoColor=white)',
+    'TypeScript': '![TypeScript](https://img.shields.io/badge/TypeScript-000000?style=for-the-badge&logo=typescript&logoColor=white)',
+    'Python': '![Python](https://img.shields.io/badge/Python-000000?style=for-the-badge&logo=python&logoColor=white)',
+    'Java': '![Java](https://img.shields.io/badge/Java-000000?style=for-the-badge&logo=java&logoColor=white)',
+    'React': '![React](https://img.shields.io/badge/React-000000?style=for-the-badge&logo=react&logoColor=white)',
+    'Node.js': '![Node.js](https://img.shields.io/badge/Node.js-000000?style=for-the-badge&logo=node.js&logoColor=white)',
+    'HTML': '![HTML5](https://img.shields.io/badge/HTML5-000000?style=for-the-badge&logo=html5&logoColor=white)',
+    'CSS': '![CSS3](https://img.shields.io/badge/CSS3-000000?style=for-the-badge&logo=css3&logoColor=white)',
+    'Go': '![Go](https://img.shields.io/badge/Go-000000?style=for-the-badge&logo=go&logoColor=white)',
     'Rust': '![Rust](https://img.shields.io/badge/Rust-000000?style=for-the-badge&logo=rust&logoColor=white)',
-    'C++': '![C++](https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white)',
-    'C': '![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)',
-    'PHP': '![PHP](https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white)',
-    'Ruby': '![Ruby](https://img.shields.io/badge/Ruby-CC342D?style=for-the-badge&logo=ruby&logoColor=white)',
-    'Swift': '![Swift](https://img.shields.io/badge/Swift-FA7343?style=for-the-badge&logo=swift&logoColor=white)',
-    'Kotlin': '![Kotlin](https://img.shields.io/badge/Kotlin-0095D5?style=for-the-badge&logo=kotlin&logoColor=white)',
-    'Dart': '![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)',
-    'Shell': '![Shell Script](https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white)',
-    'Dockerfile': '![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)',
+    'C++': '![C++](https://img.shields.io/badge/C%2B%2B-000000?style=for-the-badge&logo=c%2B%2B&logoColor=white)',
+    'C': '![C](https://img.shields.io/badge/C-000000?style=for-the-badge&logo=c&logoColor=white)',
+    'PHP': '![PHP](https://img.shields.io/badge/PHP-000000?style=for-the-badge&logo=php&logoColor=white)',
+    'Ruby': '![Ruby](https://img.shields.io/badge/Ruby-000000?style=for-the-badge&logo=ruby&logoColor=white)',
+    'Swift': '![Swift](https://img.shields.io/badge/Swift-000000?style=for-the-badge&logo=swift&logoColor=white)',
+    'Kotlin': '![Kotlin](https://img.shields.io/badge/Kotlin-000000?style=for-the-badge&logo=kotlin&logoColor=white)',
+    'Dart': '![Dart](https://img.shields.io/badge/Dart-000000?style=for-the-badge&logo=dart&logoColor=white)',
+    'Shell': '![Shell Script](https://img.shields.io/badge/Shell_Script-000000?style=for-the-badge&logo=gnu-bash&logoColor=white)',
+    'Dockerfile': '![Docker](https://img.shields.io/badge/Docker-000000?style=for-the-badge&logo=docker&logoColor=white)',
   };
   return badges[lang] || `![${lang}](https://img.shields.io/badge/${lang}-000000?style=for-the-badge&logo=${lang.toLowerCase()}&logoColor=white)`;
 }).join('\n')}
@@ -184,16 +185,16 @@ ${languages.map(lang => {
 ## 📊 GitHub Statistics
 
 <div align="center">
-  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=${user.login}&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true"/>
-  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=${user.login}&layout=compact&langs_count=8&theme=tokyonight&hide_border=true"/>
+  <img height="180em" src="https://github-readme-stats.vercel.app/api?username=${user.login}&show_icons=true&theme=dark&include_all_commits=true&count_private=true&hide_border=true&bg_color=000000&text_color=ffffff&icon_color=ffffff&title_color=ffffff"/>
+  <img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=${user.login}&layout=compact&langs_count=8&theme=dark&hide_border=true&bg_color=000000&text_color=ffffff&title_color=ffffff"/>
 </div>
 
 <div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=${user.login}&theme=tokyonight&hide_border=true" alt="GitHub Streak" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=${user.login}&theme=dark&hide_border=true&background=000000&stroke=ffffff&ring=ffffff&fire=ffffff&currStreakNum=ffffff&sideNums=ffffff&currStreakLabel=ffffff&sideLabels=ffffff&dates=ffffff" alt="GitHub Streak" />
 </div>
 
 <div align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=${user.login}&theme=tokyo-night&hide_border=true" alt="GitHub Activity Graph" />
+  <img src="https://github-readme-activity-graph.vercel.app/graph?username=${user.login}&theme=high-contrast&hide_border=true&bg_color=000000&color=ffffff&line=ffffff&point=ffffff" alt="GitHub Activity Graph" />
 </div>
 
 ## 🏆 Featured Projects
@@ -206,7 +207,7 @@ ${repos.map(repo => `### 🎯 [${repo.name}](${repo.html_url})
   
 ![Stars](https://img.shields.io/github/stars/${user.login}/${repo.name}?style=social) 
 ![Forks](https://img.shields.io/github/forks/${user.login}/${repo.name}?style=social) 
-${repo.language ? `![Language](https://img.shields.io/badge/Language-${repo.language}-blue?style=flat-square)` : ''}
+${repo.language ? `![Language](https://img.shields.io/badge/Language-${repo.language}-000000?style=flat-square&logoColor=white)` : ''}
 
 </div>`).join('\n\n---\n\n')}
 
@@ -214,7 +215,7 @@ ${repo.language ? `![Language](https://img.shields.io/badge/Language-${repo.lang
 
 <div align="center">
 
-![Profile Views](https://komarev.com/ghpvc/?username=${user.login}&label=Profile%20views&color=0e75b6&style=flat)
+![Profile Views](https://komarev.com/ghpvc/?username=${user.login}&label=Profile%20views&color=000000&style=flat)
 ![GitHub followers](https://img.shields.io/github/followers/${user.login}?label=Followers&style=social)
 ![GitHub User's stars](https://img.shields.io/github/stars/${user.login}?label=Stars&style=social)
 
@@ -224,9 +225,9 @@ ${repo.language ? `![Language](https://img.shields.io/badge/Language-${repo.lang
 
 <div align="center">
 
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/${user.login})
-${user.blog ? `[![Website](https://img.shields.io/badge/Website-FF7139?style=for-the-badge&logo=Firefox-Browser&logoColor=white)](${user.blog})` : ''}
-${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/${user.twitter_username})` : ''}
+[![GitHub](https://img.shields.io/badge/GitHub-000000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/${user.login})
+${user.blog ? `[![Website](https://img.shields.io/badge/Website-000000?style=for-the-badge&logo=Firefox-Browser&logoColor=white)](${user.blog})` : ''}
+${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-000000?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/${user.twitter_username})` : ''}
 
 </div>
 
@@ -235,7 +236,7 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-1DA1
 <div align="center">
 
 ### 💭 Random Dev Quote
-![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight)
+![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=dark&bg_color=000000&text_color=ffffff)
 
 **⭐ Star some repositories if you find them interesting!**
 
@@ -273,53 +274,55 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-1DA1
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
-      {/* Animated background elements */}
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Minimalist background pattern */}
       <div className="absolute inset-0 w-full h-full">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-purple-500/30 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
-        <div className="absolute top-40 right-20 w-96 h-96 bg-blue-500/30 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-75"></div>
-        <div className="absolute -bottom-8 left-1/2 w-80 h-80 bg-pink-500/30 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-150"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black opacity-50"></div>
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 0)',
+          backgroundSize: '50px 50px'
+        }}></div>
       </div>
       
       <div className="relative z-10 container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="p-3 bg-gradient-to-r from-purple-500 to-blue-500 rounded-2xl">
-              <Github className="w-8 h-8 text-white" />
+            <div className="p-3 bg-white rounded-2xl">
+              <Github className="w-8 h-8 text-black" />
             </div>
-            <h1 className="text-5xl font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
+            <h1 className="text-5xl font-bold text-white">
               README Generator
             </h1>
-            <div className="p-3 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl">
-              <Sparkles className="w-8 h-8 text-white" />
+            <div className="p-3 bg-white rounded-2xl">
+              <Sparkles className="w-8 h-8 text-black" />
             </div>
           </div>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Transform any GitHub profile into a <span className="text-purple-400 font-semibold">stunning README</span> with 
-            AI-powered insights and <span className="text-blue-400 font-semibold">beautiful formatting</span>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            Transform any GitHub profile into a <span className="text-white font-semibold">stunning README</span> with 
+            AI-powered insights and <span className="text-white font-semibold">beautiful formatting</span>
           </p>
           <div className="flex items-center justify-center gap-6 mt-6">
-            <div className="flex items-center gap-2 text-slate-400">
-              <Zap className="w-5 h-5 text-yellow-400" />
+            <div className="flex items-center gap-2 text-gray-400">
+              <Zap className="w-5 h-5 text-white" />
               <span>Lightning Fast</span>
             </div>
-            <div className="flex items-center gap-2 text-slate-400">
-              <Code2 className="w-5 h-5 text-green-400" />
+            <div className="flex items-center gap-2 text-gray-400">
+              <Code2 className="w-5 h-5 text-white" />
               <span>AI Powered</span>
             </div>
-            <div className="flex items-center gap-2 text-slate-400">
-              <Star className="w-5 h-5 text-purple-400" />
+            <div className="flex items-center gap-2 text-gray-400">
+              <Star className="w-5 h-5 text-white" />
               <span>Modern Design</span>
             </div>
           </div>
         </div>
 
         {step === "input" && (
-          <Card className="max-w-2xl mx-auto shadow-2xl border-0 bg-white/10 backdrop-blur-xl">
+          <Card className="max-w-2xl mx-auto shadow-2xl border border-gray-800 bg-gray-900/50 backdrop-blur-xl">
             <CardHeader className="text-center pb-6">
               <CardTitle className="text-3xl text-white">Get Started</CardTitle>
-              <CardDescription className="text-slate-300 text-lg">
+              <CardDescription className="text-gray-300 text-lg">
                 Enter a GitHub username to generate a personalized README
               </CardDescription>
             </CardHeader>
@@ -331,14 +334,14 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-1DA1
                     placeholder="Enter GitHub username (e.g., octocat)"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
-                    className="text-lg py-6 text-center bg-white/20 border-white/30 text-white placeholder:text-slate-400 focus:border-purple-400 focus:ring-purple-400"
+                    className="text-lg py-6 text-center bg-black/50 border-gray-700 text-white placeholder:text-gray-500 focus:border-white focus:ring-white"
                     disabled={loading}
                   />
                 </div>
                 <Button 
                   type="submit" 
                   disabled={loading || !username.trim()}
-                  className="w-full py-6 text-lg bg-gradient-to-r from-purple-600 via-blue-600 to-purple-600 hover:from-purple-700 hover:via-blue-700 hover:to-purple-700 shadow-lg hover:shadow-purple-500/25 transition-all duration-300"
+                  className="w-full py-6 text-lg bg-white text-black hover:bg-gray-200 shadow-lg transition-all duration-300"
                 >
                   {loading ? (
                     <>
@@ -359,35 +362,35 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-1DA1
 
         {step === "preview" && userData && (
           <div className="max-w-6xl mx-auto">
-            <Card className="shadow-2xl border-0 bg-white/10 backdrop-blur-xl mb-8">
+            <Card className="shadow-2xl border border-gray-800 bg-gray-900/50 backdrop-blur-xl mb-8">
               <CardHeader>
                 <CardTitle className="flex items-center gap-4 text-white">
                   <img 
                     src={userData.avatar_url} 
                     alt={userData.login}
-                    className="w-16 h-16 rounded-full ring-4 ring-purple-400/50"
+                    className="w-16 h-16 rounded-full ring-4 ring-white/50"
                   />
                   <div>
                     <h2 className="text-3xl">{userData.name || userData.login}</h2>
-                    <p className="text-slate-300 text-lg">@{userData.login}</p>
+                    <p className="text-gray-300 text-lg">@{userData.login}</p>
                   </div>
                 </CardTitle>
               </CardHeader>
               <CardContent>
                 {userData.bio && (
-                  <p className="text-slate-300 mb-6 text-lg">{userData.bio}</p>
+                  <p className="text-gray-300 mb-6 text-lg">{userData.bio}</p>
                 )}
-                <div className="flex flex-wrap gap-6 text-slate-300">
+                <div className="flex flex-wrap gap-6 text-gray-300">
                   <div className="flex items-center gap-2">
-                    <Users className="w-5 h-5 text-purple-400" />
+                    <Users className="w-5 h-5 text-white" />
                     <span className="font-semibold">{userData.followers}</span> followers
                   </div>
                   <div className="flex items-center gap-2">
-                    <Users className="w-5 h-5 text-blue-400" />
+                    <Users className="w-5 h-5 text-white" />
                     <span className="font-semibold">{userData.following}</span> following
                   </div>
                   <div className="flex items-center gap-2">
-                    <Github className="w-5 h-5 text-green-400" />
+                    <Github className="w-5 h-5 text-white" />
                     <span className="font-semibold">{userData.public_repos}</span> repositories
                   </div>
                   {userData.location && (
@@ -400,7 +403,7 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-1DA1
                       href={userData.blog} 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-purple-400 hover:text-purple-300 transition-colors"
+                      className="flex items-center gap-2 text-white hover:text-gray-300 transition-colors"
                     >
                       <ExternalLink className="w-4 h-4" />
                       Website
@@ -411,40 +414,40 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-1DA1
             </Card>
 
             {repositories.length > 0 && (
-              <Card className="shadow-2xl border-0 bg-white/10 backdrop-blur-xl mb-8">
+              <Card className="shadow-2xl border border-gray-800 bg-gray-900/50 backdrop-blur-xl mb-8">
                 <CardHeader>
                   <CardTitle className="text-white text-2xl">Pinned Repositories</CardTitle>
-                  <CardDescription className="text-slate-400">
+                  <CardDescription className="text-gray-400">
                     {repositories.length > 0 ? "Showcasing pinned projects from the user's profile" : "Top repositories by stars"}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <div className="grid gap-4">
                     {repositories.map((repo, index) => (
-                      <div key={index} className="border border-white/20 rounded-xl p-6 bg-white/5 hover:bg-white/10 transition-all duration-300">
+                      <div key={index} className="border border-gray-700 rounded-xl p-6 bg-black/30 hover:bg-black/50 transition-all duration-300">
                         <div className="flex items-start justify-between mb-3">
                           <a 
                             href={repo.html_url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-xl font-semibold text-purple-400 hover:text-purple-300 transition-colors"
+                            className="text-xl font-semibold text-white hover:text-gray-300 transition-colors"
                           >
                             {repo.name}
                           </a>
-                          <div className="flex items-center gap-4 text-sm text-slate-400">
+                          <div className="flex items-center gap-4 text-sm text-gray-400">
                             <div className="flex items-center gap-1">
-                              <Star className="w-4 h-4 text-yellow-400" />
+                              <Star className="w-4 h-4 text-white" />
                               {repo.stargazers_count}
                             </div>
                             <div className="flex items-center gap-1">
-                              <GitFork className="w-4 h-4 text-blue-400" />
+                              <GitFork className="w-4 h-4 text-white" />
                               {repo.forks_count}
                             </div>
                           </div>
                         </div>
-                        <p className="text-slate-300 mb-3 leading-relaxed">{repo.description}</p>
+                        <p className="text-gray-300 mb-3 leading-relaxed">{repo.description}</p>
                         {repo.language && (
-                          <Badge variant="secondary" className="bg-purple-500/20 text-purple-300 border-purple-400/30">
+                          <Badge variant="secondary" className="bg-white/20 text-white border-gray-700">
                             {repo.language}
                           </Badge>
                         )}
@@ -457,7 +460,7 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-1DA1
 
             <div className="text-center">
               <div className="flex items-center justify-center mb-6">
-                <Loader2 className="w-8 h-8 animate-spin mr-3 text-purple-400" />
+                <Loader2 className="w-8 h-8 animate-spin mr-3 text-white" />
                 <span className="text-xl text-white">Crafting your awesome README...</span>
               </div>
             </div>
@@ -466,21 +469,21 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-1DA1
 
         {step === "generated" && generatedReadme && (
           <div className="max-w-7xl mx-auto">
-            <Card className="shadow-2xl border-0 bg-white/10 backdrop-blur-xl">
+            <Card className="shadow-2xl border border-gray-800 bg-gray-900/50 backdrop-blur-xl">
               <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle className="text-3xl text-white">Your Generated README</CardTitle>
                 <div className="flex gap-3">
-                  <Button onClick={downloadReadme} className="bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 shadow-lg">
+                  <Button onClick={downloadReadme} className="bg-white text-black hover:bg-gray-200 shadow-lg">
                     <Download className="w-4 h-4 mr-2" />
                     Download
                   </Button>
-                  <Button onClick={resetForm} variant="outline" className="border-white/30 text-white hover:bg-white/10">
+                  <Button onClick={resetForm} variant="outline" className="border-gray-700 text-white hover:bg-gray-800">
                     Generate Another
                   </Button>
                 </div>
               </CardHeader>
               <CardContent>
-                <div className="prose prose-invert prose-lg max-w-none bg-slate-900/80 rounded-xl p-8 border border-white/10 overflow-auto">
+                <div className="prose prose-invert prose-lg max-w-none bg-black/80 rounded-xl p-8 border border-gray-800 overflow-auto">
                   <ReactMarkdown 
                     components={{
                       img: ({ node, ...props }) => (
@@ -491,22 +494,22 @@ ${user.twitter_username ? `[![Twitter](https://img.shields.io/badge/Twitter-1DA1
                         />
                       ),
                       h1: ({ node, ...props }) => (
-                        <h1 {...props} className="text-4xl font-bold text-center mb-8 bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent" />
+                        <h1 {...props} className="text-4xl font-bold text-center mb-8 text-white" />
                       ),
                       h2: ({ node, ...props }) => (
-                        <h2 {...props} className="text-2xl font-semibold mt-8 mb-4 text-purple-300" />
+                        <h2 {...props} className="text-2xl font-semibold mt-8 mb-4 text-white" />
                       ),
                       h3: ({ node, ...props }) => (
-                        <h3 {...props} className="text-xl font-semibold mt-6 mb-3 text-blue-300" />
+                        <h3 {...props} className="text-xl font-semibold mt-6 mb-3 text-gray-300" />
                       ),
                       a: ({ node, ...props }) => (
-                        <a {...props} className="text-purple-400 hover:text-purple-300 transition-colors" target="_blank" rel="noopener noreferrer" />
+                        <a {...props} className="text-white hover:text-gray-300 transition-colors" target="_blank" rel="noopener noreferrer" />
                       ),
                       blockquote: ({ node, ...props }) => (
-                        <blockquote {...props} className="border-l-4 border-purple-400 pl-4 italic text-slate-300 bg-purple-900/20 rounded-r-lg p-4" />
+                        <blockquote {...props} className="border-l-4 border-white pl-4 italic text-gray-300 bg-gray-800/50 rounded-r-lg p-4" />
                       ),
                       code: ({ node, ...props }) => (
-                        <code {...props} className="bg-slate-800 text-purple-300 px-2 py-1 rounded text-sm" />
+                        <code {...props} className="bg-gray-800 text-white px-2 py-1 rounded text-sm" />
                       )
                     }}
                   >
