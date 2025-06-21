@@ -2,7 +2,7 @@
 
 A beautiful, modern web application that transforms any GitHub profile into a stunning README with AI-powered insights and beautiful formatting.
 
-![README.ai Demo](public/placeholder.svg)
+![README.ai Demo](https://raw.githubusercontent.com/mandarwagh9/readme.ai/89b9032a00bfefc6d212d77d2f8754f27d06ffc4/localhost_8080_(screenshot)%20(1).png?token=BIOUNHHPTRFJBTQ7C6P7YVLIK3NL2)
 
 ## 🌟 Features
 
